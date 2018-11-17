@@ -1,9 +1,9 @@
 package pl.cpp;
 
-public class Fork {
+public class Side {
     private boolean availability;
 
-    public Fork() {
+    public Side() {
         availability = true;
     }
 

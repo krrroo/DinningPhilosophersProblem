@@ -4,10 +4,10 @@ package pl.cpp;
 public class Philosopher implements Runnable  {
 
     State state;
-    Fork left, right;
+    Side left, right;
     int id;
 
-    public Philosopher(int id, Fork left, Fork right, State state) {
+    public Philosopher(int id, Side left, Side right, State state) {
         this.id = id;
         this.left = left;
         this.right = right;
@@ -31,6 +31,7 @@ public class Philosopher implements Runnable  {
 
         }
     }
+
     @Override
     public void run() {
 

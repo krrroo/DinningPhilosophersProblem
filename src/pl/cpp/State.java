@@ -16,7 +16,7 @@ public class State {
         }
     }
 
-    public void grabForks(int id, Fork left, Fork right) {
+    public void grabForks(int id, Side left, Side right) {
         mutex.lock();
         try {
             while(!left.getAvailability() || !right.getAvailability()) {
@@ -32,7 +32,7 @@ public class State {
         }
     }
 
-    public void releaseForks(int id, Fork left, Fork right) {
+    public void releaseForks(int id, Side left, Side right) {
         mutex.lock();
         left.setAvailability(true);
         right.setAvailability(true);
