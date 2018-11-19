@@ -16,14 +16,19 @@ public class State {
         }
     }
 
-    public void grabForks(int id, Side left, Side right) {
+    public void grabForks(int id, Side left, Side right, Cutlery fork, Cutlery knife) {
         mutex.lock();
         try {
             while(!left.getAvailability() || !right.getAvailability()) {
                 condition[id].await();
             }
+            while(!fork.getAvailability() || !knife.getAvailability()) {
+                condition[id].await();
+            }
             left.setAvailability(false);
             right.setAvailability(false);
+            fork.setAvailability(false);
+            knife.setAvailability(false);
             System.out.println("Philosopher " + (id + 1) + " is grabbing forks");
         } catch (Exception e) {
             e.printStackTrace();
@@ -32,10 +37,12 @@ public class State {
         }
     }
 
-    public void releaseForks(int id, Side left, Side right) {
+    public void releaseForks(int id, Side left, Side right, Cutlery fork, Cutlery knife) {
         mutex.lock();
         left.setAvailability(true);
         right.setAvailability(true);
+        fork.setAvailability(true);
+        knife.setAvailability(true);
         condition[(id + 1) % 5].signalAll();
         condition[(id + 4) % 5].signalAll();
         System.out.println("Philosopher " + (id + 1) + " is putting down forks");
