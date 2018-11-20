@@ -25,7 +25,7 @@ public class Main {
         }
 
         for(int i = 0; i < philosophers.length; i++) {
-            philosophers[i] = new Philosopher(i, sides[i], sides[(i+4) % 5], state, forks[rand.nextInt(5)], knives[rand.nextInt(5)]);
+            philosophers[i] = new Philosopher(i, sides[i], sides[(i+4) % 5], state, forks[rand.nextInt(3)], knives[rand.nextInt(3)]);
             new Thread(philosophers[i]).start();
         }
     }
